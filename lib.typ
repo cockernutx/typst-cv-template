@@ -7,6 +7,7 @@
 
 #let cv_template(firstName: "John", surname: "Doe", contacts: contacts, photo: "icons/blank-image.svg", logo: none, body) = {
   set text(font: "Cascadia Code")
+
   
   show heading: it => [
     #set text(
@@ -18,7 +19,7 @@
     )
     #let si = 0
 
-    #box(it) #h(10pt) #box([#line(length: 100%, stroke: 1.5pt) #v(6pt)], width: 1fr)
+    #box(it) #h(10pt) #box([#line(length: 100%, stroke: 1.5pt) #v(6pt)], width: 1fr) #linebreak()
   ]
   
   // header
@@ -90,4 +91,32 @@
   body
 }
 
+#let skill(description, place, timeframe, img: "") = {
+  set text(font: "Public Sans")
+  
+  let time = [
+    #set text(fill: rgb("#ff3d3d"), size: 13pt)
+    #set align(right)
 
+    #emph(upper(timeframe))
+  ]
+
+  let desc = [
+    #set text(weight: "bold", size: 15pt)
+    #description
+  ]
+
+  let plc = [
+    #set text(fill: rgb("#45a5e6"), weight: "semibold")
+    #upper(place)
+  ]
+
+  if img != "" [
+    #image(img)
+  ]
+  grid(
+    columns: (1fr, 1fr),
+    gutter: 10pt,
+    [#desc], [#time], [#plc]
+  )
+}
