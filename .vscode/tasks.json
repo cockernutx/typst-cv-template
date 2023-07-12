@@ -1,0 +1,27 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile design",
+            "type": "shell",
+            "command": "typst compile ${workspaceFolder}/design/main.typ ${workspaceFolder}/design/build/output.pdf",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Watch design",
+            "type": "shell",
+            "command": "typst watch ${workspaceFolder}/design/main.typ ${workspaceFolder}/design/build/output.pdf",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

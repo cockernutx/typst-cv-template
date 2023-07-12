@@ -1,0 +1,5 @@
+FROM archlinux:latest
+
+RUN	 pacman -Syy
+RUN pacman -Sy --noconfirm fish typst git
+RUN chsh -s /usr/bin/fish  

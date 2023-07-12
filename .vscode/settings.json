@@ -1,0 +1,10 @@
+{
+    "cSpell.enableFiletypes": [
+        "typst"
+    ],
+    "languageToolLinter.languageTool.ignoredWordsInWorkspace": [
+        "castlevania",
+        "metroid"
+    ],
+    "languageToolLinter.languageTool.language": "pt-BR"
+}

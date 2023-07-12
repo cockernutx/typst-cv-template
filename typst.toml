@@ -1,0 +1,13 @@
+[package]
+name = "CV_template"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["https://github.com/cockernutx"]
+license = "MIT"
+description = "An resumé template."
+exclude = [
+    ".devcontainer",
+    ".vscode",
+    "docker-compose.dev.yml",
+    "Dockerfile.dev"
+]
