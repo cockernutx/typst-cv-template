@@ -10,10 +10,10 @@
   set page(
     paper: "a4",
     margin: (
-      left: 1cm,
-      right: 1cm,
-      top: .8cm,
-      bottom: .8cm,
+      left: 0cm,
+      right: 0cm,
+      top: 0cm,
+      bottom: 0cm,
     ),
   )
   
@@ -52,6 +52,8 @@
         #surname
       ]
   let create-header = [
+    #set text(fill: white)
+    
     #let create-contact-info = [
         #set text(size: 12pt)
       
@@ -60,6 +62,7 @@
             #box(image(contact.icon, width: 15pt)) #h(5pt)
             ]
          ]
+         #let current_contact = 0
          #for contact in contacts [
            #if contact.keys().contains("link") [
              #link(contact.link)[
@@ -68,9 +71,13 @@
            ] else [
              #addIcon(contact) #contact.content
            ]
-           #h(5pt) | #h(5pt)
+           #if contacts.len() -1 != current_contact [
+             #h(5pt) | #h(5pt)
+           ]
+           #{current_contact = current_contact + 1}
          ]
     ]
+    
     #let header-text = [
       #table(  
         columns: 1fr,
@@ -80,7 +87,17 @@
         [ #first-name-header-section #surname-header-section ], [#create-contact-info]
       )
     ]
-    #table(
+    
+    #block(
+      fill: rgb("#70ba9f"),
+      inset: (
+        top: .8cm,
+        left: 1cm,
+        right: 1cm,
+        bottom: .8cm
+      )
+    )[
+      #table(
         columns: (auto, 25%),
         inset: 0pt,
         stroke: none,
@@ -88,6 +105,7 @@
         align: left + horizon,
         [#header-text], [#box[ #image(photo, fit: "cover")]]
     )
+    ]
     
   ]
   
@@ -95,9 +113,16 @@
   
   
   create-header
-  linebreak()
-  linebreak()
-  body
+  block(
+    inset: (
+      top: .8cm,
+      left: 1cm,
+      right: 1cm,
+      bottom: .8cm
+    )
+  )[
+    #body
+  ]
 }
 
 #let entry(description, place, timeframe, img: "") = {
