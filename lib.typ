@@ -115,17 +115,15 @@
   if img != "" [
   
     #let i = image(img, fit: "contain")
-    #grid(
-      columns: (auto, 1fr, 1fr),
-      column-gutter: 10pt,
-      [#box(height: 25pt)[#i]], [#grid(gutter: 10pt, [#desc], [#plc])], [#time]
-    ) 
+    #box(height: 25pt)[#i] #h(10pt)
+    #box()[#grid(gutter: 10pt, [#desc], [#plc])] #h(15pt) 
+    #box([#line(length: 100%, stroke: 0.3pt) #v(20pt)], width: 1fr) #h(15pt)  
+    #box()[#time #v(16.5pt)]
+  
   ]
   else [
-    #grid(
-      columns: (1fr, 1fr),
-      gutter: 10pt,
-      [#desc], [#time], [#plc]
-    ) 
+    #box()[#grid(gutter: 10pt, [#desc], [#plc])] #h(15pt) 
+    #box([#line(length: 100%, stroke: 0.3pt) #v(20pt)], width: 1fr) #h(15pt)  
+    #box()[#time #v(16.5pt)]
   ]
 }
