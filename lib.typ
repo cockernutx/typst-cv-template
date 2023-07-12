@@ -6,7 +6,21 @@
 )
 
 #let cv_template(firstName: "John", surname: "Doe", contacts: contacts, photo: "icons/blank-image.svg", logo: none, body) = {
-  set text(font: "Linux Libertine")
+  set text(font: "Cascadia Code")
+  
+  show heading: it => [
+    #set text(
+      font: "IBM Plex Mono",
+      weight: "medium",
+      fill: rgb("#474747"),
+      size: 25pt,
+      spacing: 1pt
+    )
+    #let si = 0
+
+    #box(it) #h(10pt) #box([#line(length: 100%, stroke: 1.5pt) #v(6pt)], width: 1fr)
+  ]
+  
   // header
   let headerFont = "Roboto"
   let first-name-header-section = [    
@@ -55,16 +69,14 @@
         [ #first-name-header-section #surname-header-section ], [#create-contact-info]
       )
     ]
-
-
-      #table(
+    #table(
         columns: (auto, 25%),
         inset: 0pt,
         stroke: none,
         column-gutter: 15pt,
         align: left + horizon,
         [#header-text], [#box[ #image(photo, width: 150pt, height: 150pt)]]
-      )
+    )
     
   ]
   
@@ -72,7 +84,9 @@
   
   
   create-header
-
+  linebreak()
+  linebreak()
+  linebreak()
   body
 }
 
