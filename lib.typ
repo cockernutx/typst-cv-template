@@ -7,7 +7,15 @@
 
 #let cv_template(firstName: "John", surname: "Doe", contacts: contacts, photo: "icons/blank-image.svg", body) = {
   set text(font: "Cascadia Code", size: 10pt)
-
+  set page(
+    paper: "a4",
+    margin: (
+      left: 1cm,
+      right: 1cm,
+      top: .8cm,
+      bottom: .8cm,
+    ),
+  )
   
   show heading: it => [
     #set text(
