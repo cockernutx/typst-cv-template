@@ -100,7 +100,7 @@
   body
 }
 
-#let skill(description, place, timeframe, img: "") = {
+#let entry(description, place, timeframe, img: "") = {
   set text(font: "Public Sans")
   
   let time = [
@@ -134,4 +134,5 @@
     #box([#line(length: 100%, stroke: 0.3pt) #v(20pt)], width: 1fr) #h(15pt)  
     #box()[#time #v(16.5pt)]
   ]
+  parbreak()
 }
