@@ -5,8 +5,8 @@
   (content: [#"johndoe@johndoemail.com"], icon: "icons/email-svgrepo-com.svg", link: "mailto:johndoe@johndoemail.com")
 )
 
-#let cv_template(firstName: "John", surname: "Doe", contacts: contacts, photo: "icons/blank-image.svg", logo: none, body) = {
-  set text(font: "Cascadia Code")
+#let cv_template(firstName: "John", surname: "Doe", contacts: contacts, photo: "icons/blank-image.svg", body) = {
+  set text(font: "Cascadia Code", size: 10pt)
 
   
   show heading: it => [
@@ -45,6 +45,8 @@
       ]
   let create-header = [
     #let create-contact-info = [
+        #set text(size: 12pt)
+      
         #let addIcon(contact) = [
            #if contact.keys().contains("icon") [
             #box(image(contact.icon, width: 15pt)) #h(5pt)
@@ -76,7 +78,7 @@
         stroke: none,
         column-gutter: 15pt,
         align: left + horizon,
-        [#header-text], [#box[ #image(photo, width: 150pt, height: 150pt)]]
+        [#header-text], [#box[ #image(photo, fit: "cover")]]
     )
     
   ]
@@ -87,7 +89,6 @@
   create-header
   linebreak()
   linebreak()
-  linebreak()
   body
 }
 
@@ -95,14 +96,14 @@
   set text(font: "Public Sans")
   
   let time = [
-    #set text(fill: rgb("#ff3d3d"), size: 13pt)
+    #set text(fill: rgb("#ff3d3d"), size: 11pt)
     #set align(right)
 
     #emph(upper(timeframe))
   ]
 
   let desc = [
-    #set text(weight: "bold", size: 15pt)
+    #set text(weight: "bold", size: 13pt)
     #description
   ]
 
@@ -112,11 +113,19 @@
   ]
 
   if img != "" [
-    #image(img)
+  
+    #let i = image(img, fit: "contain")
+    #grid(
+      columns: (auto, 1fr, 1fr),
+      column-gutter: 10pt,
+      [#box(height: 25pt)[#i]], [#grid(gutter: 10pt, [#desc], [#plc])], [#time]
+    ) 
   ]
-  grid(
-    columns: (1fr, 1fr),
-    gutter: 10pt,
-    [#desc], [#time], [#plc]
-  )
+  else [
+    #grid(
+      columns: (1fr, 1fr),
+      gutter: 10pt,
+      [#desc], [#time], [#plc]
+    ) 
+  ]
 }
